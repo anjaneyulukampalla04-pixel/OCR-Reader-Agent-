@@ -1,48 +1,117 @@
-[![Translation status](https://hosted.weblate.org/widgets/gimagereader/-/svg-badge.svg)](https://hosted.weblate.org/engage/gimagereader/?utm_source=widget)
-[![Github All Releases](https://img.shields.io/github/downloads/manisandro/gImageReader/total.svg)]()
-[![Actions Status](https://github.com/manisandro/gImageReader/workflows/CI%20Build/badge.svg)](https://github.com/manisandro/gImageReader/actions)
+# OCR Reader Agent
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](COPYING)
+[![C++ Standard](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](CMakeLists.txt)
+[![Build System](https://img.shields.io/badge/Build-CMake-orange.svg)](CMakeLists.txt)
+[![OCR Engine](https://img.shields.io/badge/OCR-Tesseract-green.svg)](https://github.com/tesseract-ocr/tesseract)
 
-# gImageReader
+**OCR Reader Agent** (powered by gImageReader) is an advanced, cross-platform graphical frontend for the **Tesseract OCR** engine. It provides an intuitive interface for capturing, processing, recognizing, editing, and exporting text from images and multi-page PDF documents.
 
-gImageReader is a simple Gtk/Qt front-end to [tesseract-ocr](https://github.com/tesseract-ocr/tesseract).
+---
 
-![Logo](https://raw.githubusercontent.com/manisandro/gImageReader/gh-pages/gimagereader.jpg)
+## 🌟 Key Features
 
-## Features
-- Import PDF documents and images from disk, scanning devices, clipboard and screenshots
-- Process multiple images and documents in one go
-- Manual or automatic recognition area definition
-- Recognize to plain text or to hOCR documents
-- Recognized text displayed directly next to the image
-- Post-process the recognized text, including spellchecking
-- Generate PDF documents from hOCR documents
-- International language support: [Weblate](https://hosted.weblate.org/projects/gimagereader/), [Desktop entry](./data/gimagereader.appdata.xml.in)
+- 📥 **Comprehensive Media Import**
+  - Import images (PNG, JPEG, TIFF, BMP, DjVu) and multi-page PDF documents.
+  - Direct acquisition from scanning devices via **SANE** (Linux) and **TWAIN** (Windows).
+  - Instant paste from system clipboard and live desktop screenshot capture.
 
-## Installation
-- ![Source](https://raw.githubusercontent.com/manisandro/gImageReader/gh-pages/icons/source.png) **Source**: Download from the [releases page](https://github.com/manisandro/gImageReader/releases)
-- ![Windows](https://raw.githubusercontent.com/manisandro/gImageReader/gh-pages/icons/windows.png) **Windows**: Download from the [releases page](https://github.com/manisandro/gImageReader/releases)
-- ![Fedora](https://raw.githubusercontent.com/manisandro/gImageReader/gh-pages/icons/fedora.png) **Fedora**: Available from the [official repositories](https://src.fedoraproject.org/rpms/gimagereader)
-- ![Debian](https://raw.githubusercontent.com/manisandro/gImageReader/gh-pages/icons/debian.png) **Debian**: Available from the [official repositories](https://packages.debian.org/unstable/main/gimagereader)
-- ![Ubuntu](https://raw.githubusercontent.com/manisandro/gImageReader/gh-pages/icons/ubuntu.png) **Ubuntu**: Available from [ppa:sandromani/gimagereader](https://launchpad.net/~sandromani/+archive/ubuntu/gimagereader)
-- ![OpenSUSE](https://raw.githubusercontent.com/manisandro/gImageReader/gh-pages/icons/opensuse.png) **OpenSUSE**: Available from [OpenSUSE Build Service](https://build.opensuse.org/project/show/home:sandromani)
-- ![ArchLinux](https://raw.githubusercontent.com/manisandro/gImageReader/gh-pages/icons/arch.png) **ArchLinux**: Available from the extra repositories: [gimagereader-gtk](https://archlinux.org/packages/extra/x86_64/gimagereader-gtk) and [gimagereader-qt](https://archlinux.org/packages/extra/x86_64/gimagereader-qt)
-- <a href='https://flathub.org/apps/io.github.manisandro.gImageReader'>
-    <img width='128' alt='Download on Flathub' src='https://flathub.org/api/badge?locale=en'/>
-  </a>
+- 🎯 **Advanced Recognition & Layout Analysis**
+  - Automatic layout detection for complex document structures.
+  - Manual definition and fine-tuning of recognition regions and text blocks.
+  - Batch recognition across multiple files and pages simultaneously.
 
-## Compilation
-The steps for compiling gImageReader from source are documented in the [wiki](https://github.com/manisandro/gImageReader/wiki/Compiling-gImageReader).
+- 🔤 **Tesseract OCR Integration**
+  - Full support for Tesseract 3.x, 4.x, and 5.x recognition models.
+  - Multi-language recognition capability with downloadable language data packs.
+  - Output to plain text or structured layout format (**hOCR**).
 
-## Support
-If you encounter issues, please file a ticket in the [issue tracker](https://github.com/manisandro/gImageReader/issues), or feel free to mail me directly at `manisandro(at)gmail(dot)com`. Be sure to also consult the [FAQ](https://github.com/manisandro/gImageReader/wiki/FAQ).
+- ✏️ **Interactive Post-Processing & Editing**
+  - Side-by-side view comparing input document visuals directly with recognized text.
+  - Built-in real-time spell checking powered by **Enchant** / **Hunspell**.
+  - Search and replace, text strip formatting, and character replacement rules.
 
-## Contributing
-Contributions are always welcome, ideally in the form of pull-requests.
+- 📄 **Export & Document Generation**
+  - Export to Plain Text (`.txt`), hOCR (`.html`), or generate **searchable PDF** files with embedded invisible text layers.
 
-## Translating
-International language support contributions at [Weblate](https://hosted.weblate.org/projects/gimagereader/) and [Desktop entry](./data/gimagereader.appdata.xml.in).
+- 🖥️ **Dual GUI Support**
+  - Native user interface backends for both **Qt** (Qt5 / Qt6) and **GTK3**.
 
-<a href="https://hosted.weblate.org/engage/gimagereader/">
-<img src="https://hosted.weblate.org/widgets/gimagereader/-/glossary/multi-auto.svg" alt="Translation status" />
-</a>
+---
+
+## 🏗 Project Architecture
+
+```
+OCR-Reader-Agent/
+├── CMakeLists.txt        # Primary CMake configuration and dependency resolution
+├── common/               # Core OCR engine abstractions, paper sizes, and CCITT encoding
+├── gtk/                  # GTK3 graphical interface implementation
+├── qt/                   # Qt5 / Qt6 graphical interface implementation
+├── data/                 # Icons, desktop entries, appdata, and UI resources
+├── docs/                 # User documentation & manual source files
+├── packaging/            # Build specs for Linux distributions and Windows installers
+└── po/                   # Gettext translation catalogs
+```
+
+---
+
+## 🛠 Prerequisites & Dependencies
+
+To build OCR Reader Agent from source, ensure the following tools and libraries are installed:
+
+### Build Tools
+- **C++ Compiler** with C++17 support (`gcc`, `clang`, or `MSVC`)
+- **CMake** (>= 3.10)
+- **PkgConfig** & **Gettext**
+
+### Core Libraries
+- **Tesseract OCR** (`libtesseract`)
+- **PoDoFo** (`libpodofo`) — for PDF processing
+- **DjVuLibre** (`ddjvuapi`) — for DjVu image support
+- **Enchant** (`libenchant-2`) — for spell checking
+- **SANE** (`sane-backends`) — for scanner support (Linux/Unix)
+
+### GUI Frameworks (Choose one or both)
+- **Qt6** / **Qt5** (`qtbase`, `qtimageformats`)
+- **GTK3** (`gtkmm-3.0`)
+
+---
+
+## 🚀 Building from Source
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/anjaneyulukampalla04-pixel/OCR-Reader-Agent-.git
+cd OCR-Reader-Agent-
+```
+
+### 2. Configure & Build
+
+#### Build Qt Interface (Default: Qt6)
+```bash
+mkdir build && cd build
+cmake -DINTERFACE_TYPE=qt6 ..
+make -j$(nproc)
+sudo make install
+```
+
+#### Build GTK3 Interface
+```bash
+mkdir build && cd build
+cmake -DINTERFACE_TYPE=gtk ..
+make -j$(nproc)
+sudo make install
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions, bug reports, and feature requests are welcome! Feel free to check out the [issues](https://github.com/anjaneyulukampalla04-pixel/OCR-Reader-Agent-/issues) page.
+
+---
+
+## 📜 License
+
+This project is licensed under the **GNU General Public License v3.0** (GPLv3). See the [COPYING](COPYING) file for full license text.
