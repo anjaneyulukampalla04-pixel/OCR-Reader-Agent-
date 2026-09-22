@@ -1,10 +1,5 @@
 # OCR Reader Agent
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](COPYING)
-[![C++ Standard](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](CMakeLists.txt)
-[![Build System](https://img.shields.io/badge/Build-CMake-orange.svg)](CMakeLists.txt)
-[![OCR Engine](https://img.shields.io/badge/OCR-Tesseract-green.svg)](https://github.com/tesseract-ocr/tesseract)
-
 **OCR Reader Agent** (powered by gImageReader) is an advanced, cross-platform graphical frontend for the **Tesseract OCR** engine. It provides an intuitive interface for capturing, processing, recognizing, editing, and exporting text from images and multi-page PDF documents.
 
 ---
